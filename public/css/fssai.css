@@ -1,0 +1,94 @@
+/* FSSAI page styles: header, chips, cards, helpline, theme vars */
+
+:root{
+  --bg:#071022; --card:#071726; --muted:#9aa4ad; --accent:#10b981; --accent-2:#06b6d4;
+  --chip-bg: rgba(255,255,255,0.03); --chip-active:#047857; --text:#e6eef6;
+  --glass: rgba(255,255,255,0.03);
+  --card-border: rgba(255,255,255,0.04);
+}
+body.light-mode {
+  --bg:#f6fbf9; --card:#ffffff; --muted:#4b5563; --accent:#059669; --accent-2:#06b6d4;
+  --chip-bg:#e6f6f1; --chip-active:#10b981; --text:#052024; --glass: rgba(2,6,23,0.02); --card-border: rgba(15,23,36,0.06);
+}
+.fssai-page{background:var(--bg); color:var(--text); min-height:100vh}
+.content{padding:28px 32px; transition:background .2s,color .2s}
+
+/* Header */
+.fssai-header{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  border-radius:12px;padding:22px;display:flex;align-items:center;gap:16px;flex-direction:column;
+  margin-bottom:18px;box-shadow:0 12px 36px rgba(2,6,23,0.2);
+}
+.fssai-header .header-left{align-self:flex-start}
+.fssai-header h1{margin:0;color:#fff;font-size:22px}
+.fssai-header .subtitle{margin:4px 0 0;color:rgba(255,255,255,0.95);font-size:13px}
+.fssai-header .header-right{margin-left:auto;display:flex;gap:10px;align-items:center;width:100%;justify-content:flex-end}
+.search-input{padding:10px 14px;border-radius:999px;border:none;min-width:300px;background:rgba(255,255,255,0.12);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03)}
+.search-input::placeholder{color:rgba(255,255,255,0.85)}
+.theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.16);padding:8px 12px;border-radius:8px;color:#fff;cursor:pointer}
+
+/* Chips */
+.chips-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;width:100%}
+.chip{background:var(--chip-bg);color:var(--text);border:none;padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:inset 0 -6px 12px rgba(0,0,0,0.06);transition:transform .12s, box-shadow .12s}
+.chip:hover{transform:translateY(-3px)}
+.chip.active{background:var(--chip-active);color:#fff;box-shadow:0 10px 30px rgba(16,185,129,0.12)}
+
+/* About card */
+.fssai-intro{margin:18px 0}
+.about-card{
+  display:flex;gap:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.016), rgba(255,255,255,0.01));
+  padding:18px;border-radius:12px;border-left:4px solid rgba(16,185,129,0.18);
+  border:1px solid var(--card-border);align-items:center;
+  box-shadow:0 8px 24px rgba(2,6,23,0.06);
+}
+.about-icon{width:52px;height:52px;border-radius:12px;background:var(--glass);display:flex;align-items:center;justify-content:center}
+.about-icon .icon-svg{color:var(--accent); width:26px;height:26px}
+.about-body h3{margin:0 0 6px 0;color:var(--text);font-size:18px}
+.about-body p{margin:0;color:var(--muted);line-height:1.45}
+
+/* Tips grid */
+.tips-list h4{margin:14px 0 8px 0;color:var(--text)}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.tip-card{
+  background:var(--card);padding:16px;border-radius:10px;border:1px solid var(--card-border);
+  box-shadow:0 8px 20px rgba(2,6,23,0.06);transition:transform .12s, box-shadow .12s;
+}
+.tip-card:hover{transform:translateY(-6px);box-shadow:0 14px 36px rgba(2,6,23,0.12)}
+.tip-card .card-head{display:flex;align-items:flex-start;gap:12px}
+.tip-icon{width:44px;height:44px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tip-icon svg{width:22px;height:22px;color:var(--accent)}
+.tip-card h5{margin:0;font-size:16px;color:var(--text)}
+.tip-card p{margin:8px 0;color:var(--muted);font-size:14px}
+.tip-tags{margin-top:6px}
+.badge{display:inline-block;background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted);margin-right:8px}
+
+/* mini buttons (save/share) */
+.mini-btn{border:1px solid var(--card-border);background:transparent;color:var(--text);padding:8px 10px;border-radius:8px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;font-size:13px;transition:all .14s}
+.mini-btn svg{width:16px;height:16px}
+.mini-btn.save{border-color:rgba(16,185,129,0.18)}
+.mini-btn.save:hover{background:rgba(16,185,129,0.06)}
+.mini-btn.share{border-color:rgba(59,130,246,0.12)}
+.mini-btn.share:hover{background:rgba(59,130,246,0.06)}
+.mini-btn:disabled{opacity:.6;cursor:default}
+
+/* Info cards */
+.extra-cards .info-cards-grid{display:flex;gap:12px;margin:18px 0;flex-wrap:wrap}
+.info-card{background:linear-gradient(90deg, rgba(255,255,255,0.016), rgba(255,255,255,0.01));padding:14px;border-radius:10px;min-width:200px;color:var(--text);border:1px solid var(--card-border)}
+.info-card h5{margin:0 0 6px 0}
+.info-card p{margin:0;color:var(--muted)}
+
+/* Helpline card */
+.helpline-wrap{margin-top:26px;display:flex;justify-content:center}
+.helpline-card{border-radius:12px;padding:18px 30px;border:1px solid rgba(16,185,129,0.18);background:linear-gradient(180deg, rgba(16,185,129,0.03), rgba(16,185,129,0.01));text-align:center;min-width:360px}
+.helpline-label{font-size:13px;color:var(--muted)}
+.helpline-number{font-size:28px;color:var(--accent);font-weight:700;margin:6px 0}
+.helpline-note{font-size:12px;color:var(--muted)}
+
+/* small screens */
+@media(max-width:900px){
+  .fssai-header{padding:14px}
+  .search-input{min-width:160px}
+  .tips-grid{grid-template-columns:1fr}
+  .about-card{flex-direction:column;align-items:flex-start}
+}

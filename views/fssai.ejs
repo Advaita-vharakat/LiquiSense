@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FSSAI Guidelines - LiquiSense</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fssai.css">
+</head>
+<body class="fssai-page">
+	<div class="container">
+		<%- include("partials/sidebar") %>
+
+		<div class="content">
+			<header class="fssai-header">
+				<div class="header-left">
+					<h1>FSSAI Guidelines</h1>
+					<p class="subtitle">Food Safety Standards Authority of India</p>
+				</div>
+				<div class="header-right">
+					<input id="fssaiSearch" class="search-input" placeholder="Search tips..." />
+				</div>
+				<nav class="chips-row" role="tablist">
+					<button class="chip active" data-cat="all">All</button>
+					<button class="chip" data-cat="dairy">Dairy</button>
+					<button class="chip" data-cat="fruits">Fruits</button>
+					<button class="chip" data-cat="grains">Grains</button>
+					<button class="chip" data-cat="seafood">Seafood</button>
+					<button class="chip" data-cat="meat">Meat</button>
+					<button class="chip" data-cat="vegetable">Vegetable</button>
+				</nav>
+			</header>
+
+			<section class="fssai-intro">
+				<div class="about-card">
+					<!-- shield SVG icon -->
+					<div class="about-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-svg">
+							<path d="M12 2L3 5v6c0 5.25 3.84 10.74 9 11 5.16-.26 9-5.75 9-11V5l-9-3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.02)"></path>
+							<path d="M9.5 12.5l1.8 1.8L15 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+						</svg>
+					</div>
+
+					<div class="about-body">
+						<h3>About FSSAI</h3>
+						<p>FSSAI is an autonomous body under the Ministry of Health & Family Welfare, Government of India. It ensures food safety and regulates the manufacture, storage, and distribution of food.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="tips-list">
+				<h4 id="tipsCount">0 Tips Found</h4>
+				<div id="tipsGrid" class="tips-grid">
+					<!-- tips rendered by JS -->
+				</div>
+			</section>
+
+			<!-- More cards area (replica + extras) -->
+			<section class="extra-cards">
+				<div class="info-cards-grid">
+					<div class="info-card">
+						<h5>FSS Act 2006</h5>
+						<p>Know your rights and responsibilities under the FSSAI act.</p>
+					</div>
+					<div class="info-card">
+						<h5>Label Check</h5>
+						<p>Verify manufacturing & expiry dates, and FSSAI license code on packaged foods.</p>
+					</div>
+					<div class="info-card">
+						<h5>Safe Storage</h5>
+						<p>Temperature and handling tips to keep food safe.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Helpline card at the end -->
+			<section class="helpline-wrap">
+				<div class="helpline-card">
+					<div class="helpline-label">FSSAI Helpline</div>
+					<div class="helpline-number">1800-112-100</div>
+					<div class="helpline-note">Toll Free (24x7)</div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="/js/fssai.js"></script>
+</body>
+</html>

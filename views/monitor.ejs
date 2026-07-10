@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LiquiSense - Food Monitoring</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/monitor.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+
+		<%- include("partials/sidebar") %>
+
+		<div class="content">
+
+			<h1>Food Monitoring</h1>
+
+			<!-- theme toggle moved to Settings -->
+
+			<div class="monitor-card">
+				<h3>What are you testing?</h3>
+
+				<div class="chip-row" role="tablist">
+					<button class="chip active" data-category="all">All</button>
+					<button class="chip" data-category="dairy">Dairy</button>
+					<button class="chip" data-category="meat">Meat</button>
+					<button class="chip" data-category="vegetable">Vegetable</button>
+					<button class="chip" data-category="grain">Grain</button>
+				</div>
+
+				<div class="form-row">
+					<select id="itemSelect">
+						<option>Loading...</option>
+					</select>
+					<div id="expectedValues" class="expected-values-box hidden">
+						<strong>Expected Values:</strong>
+						<div id="expectedContent"></div>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<button id="startMonitor" class="start-btn">Start Monitoring</button>
+				</div>
+
+			</div>
+
+			<div class="info-box">
+				<strong>No ESP32 configured.</strong> App will run in <strong>simulation mode</strong> for testing. Set ESP32 IP in Settings for real device connection.
+			</div>
+
+			<!-- Monitoring UI with sensor cards -->
+			<div id="monitorPanel" class="monitor-panel hidden">
+				<div class="monitor-header">
+					<h2 id="monitorTitle">Monitoring</h2>
+					<div class="monitor-controls">
+						<button id="stopMonitor" class="outline-btn">Stop</button>
+						<button id="saveData" class="save-btn">Save Data</button>
+					</div>
+				</div>
+
+				<!-- Safety Card -->
+				<div id="safetyCard" class="safety-card">
+					<div class="safety-icon" id="safetyIcon">✓</div>
+					<div class="safety-content">
+						<h3 id="safetyStatus">Safe to Consume</h3>
+						<p id="safetyDetails">All parameters are within safe limits.</p>
+						<p class="safety-confidence" id="safetyConfidence">Confidence: 100%</p>
+					</div>
+				</div>
+
+				<!-- Sensor Data Cards Grid -->
+				<div class="sensors-grid">
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8v2l1 2v6a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V6l1-2V2z"/></svg>
+						</div>
+						<h4>pH Level</h4>
+						<div class="sensor-value" id="phValue">--</div>
+						<div class="sensor-unit">pH</div>
+						<canvas id="phChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="phRange"></div>
+					</div>
+
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V6a2 2 0 1 0-4 0v8.76a4 4 0 1 0 4 0z"/></svg>
+						</div>
+						<h4>Temperature</h4>
+						<div class="sensor-value" id="tempValue">--</div>
+						<div class="sensor-unit">°C</div>
+						<canvas id="tempChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="tempRange"></div>
+					</div>
+
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s-6 6-6 10a6 6 0 0 0 12 0c0-4-6-10-6-10z"/></svg>
+						</div>
+						<h4>Turbidity</h4>
+						<div class="sensor-value" id="turbidityValue">--</div>
+						<div class="sensor-unit">NTU</div>
+						<canvas id="turbidityChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="turbidityRange"></div>
+					</div>
+
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg>
+						</div>
+						<h4>Conductivity</h4>
+						<div class="sensor-value" id="conductivityValue">--</div>
+						<div class="sensor-unit">µS/cm</div>
+						<canvas id="conductivityChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="conductivityRange"></div>
+					</div>
+
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21h12M12 17v4M4 7h16M8 7v2a4 4 0 0 0 8 0V7"/></svg>
+						</div>
+						<h4>Weight</h4>
+						<div class="sensor-value" id="weightValue">--</div>
+						<div class="sensor-unit">g</div>
+						<canvas id="weightChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="weightRange"></div>
+					</div>
+
+					<div class="sensor-card">
+						<div class="sensor-icon" aria-hidden="true" style="margin-bottom:6px">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-6-6M14 10a4 4 0 1 0-5.66-5.66A4 4 0 0 0 14 10z"/></svg>
+						</div>
+						<h4>Density</h4>
+						<div class="sensor-value" id="densityValue">--</div>
+						<div class="sensor-unit">g/cm³</div>
+						<canvas id="densityChart" class="sensor-chart"></canvas>
+						<div class="sensor-range" id="densityRange"></div>
+					</div>
+				</div>
+
+				<div class="monitor-footer">
+					<p id="monitorStatus" class="monitor-status">Connecting to ESP32...</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="/js/main.js"></script>
+	<script src="/js/monitor.js"></script>
+
+</body>
+</html>

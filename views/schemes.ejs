@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LiquiSense - Food Monitoring</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/schemes.css">
+	<link rel="stylesheet" href="/css/dashboard.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+
+		<%- include("partials/sidebar") %>
+
+		<div class="content schemes-page">
+	<section class="schemes-hero">
+		<div class="hero-inner">
+			<h1>Government Schemes</h1>
+			<p class="hero-sub">For Farmers & Agriculture</p>
+			<div class="hero-search">
+				<input id="schemeSearch" type="search" placeholder="Search schemes..." />
+			</div>
+				<!-- theme toggle moved to Settings -->
+			<div class="chips-row">
+				<button class="chip active" data-cat="all">All Schemes</button>
+				<button class="chip" data-cat="financial">Financial</button>
+				<button class="chip" data-cat="equipment">Equipment</button>
+				<button class="chip" data-cat="insurance">Insurance</button>
+				<button class="chip" data-cat="irrigation">Irrigation</button>
+			</div>
+			<div class="hero-stats">
+				<div class="stat"><strong id="statCount">0</strong><span>Active Schemes</span></div>
+				<div class="stat"><strong id="statBudget">₹0 Cr</strong><span>Total Budget</span></div>
+				<div class="stat"><strong id="statBen">0 Cr</strong><span>Beneficiaries</span></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="schemes-listing">
+		<h3>Available Schemes</h3>
+		<div id="schemesContainer" class="schemes-container"></div>
+		<div class="kisan-call">
+			<h4>Kisan Call Center</h4>
+			<p class="call-number">1800-180-1551</p>
+			<p class="call-hours">Toll Free (6 AM - 10 PM)</p>
+		</div>
+	</section>
+
+	<script src="/js/main.js"></script>
+	<script src="/js/schemes.js"></script>
+	</div>
+
+</body>
+</html>
