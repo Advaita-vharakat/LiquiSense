@@ -6,5 +6,4 @@ transmitted by ESP32 to monitor quality parameters and identify potential contam
 multi-sensor analysis.
 It is a centralized web dashboard for data storage, visualization, and historical record management,
 while providing access to relevant government schemes, workshops, and educational resources for dairy and
-edible liquid products.
-</p>
+edible liquid products.</p>
